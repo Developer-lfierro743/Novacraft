@@ -1,4 +1,3 @@
-can this be improved plus can you make it humanized and reworked?
 # Project Novacraft
 > Developed by NovaForge studios
 
