@@ -7,7 +7,7 @@
 [![Discord](https://img.shields.io/discord/112233445566778899?label=Discord&logo=discord&color=7289DA)](https://discord.gg/acN93WBRC5) 
 [![Contribute](https://img.shields.io/badge/Contribute-GitHub-blue?logo=github)](https://github.com/Developer-lfierro743/Novacraft)
 
-🚧 This Project is Still a Work in Progress! 🚧
+## 🚧 This Project is Still a Work in Progress! 🚧
 We're cooking up something amazing here, but it's not quite ready for prime time yet.
 plus this project will be released in september 25th 2025(the original date was august but nah)
 
