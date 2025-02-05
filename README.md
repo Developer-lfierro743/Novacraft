@@ -7,6 +7,8 @@
 [![Discord](https://img.shields.io/discord/112233445566778899?label=Discord&logo=discord&color=7289DA)](https://discord.gg/acN93WBRC5) 
 [![Contribute](https://img.shields.io/badge/Contribute-GitHub-blue?logo=github)](https://github.com/Developer-lfierro743/Novacraft)
 
+## > this project is still WIP(work in progress)!!!
+
 ## 🌟 Why Novacraft?
 
 We're addressing **Minecraft's greatest failures** while honoring Notch's original vision:
