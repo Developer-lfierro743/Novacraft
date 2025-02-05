@@ -1,12 +1,26 @@
 plugins {
     id 'java'
+	id 'maven-publish'
 }
 
 group = 'com.novaforgestudios'
 version = 'v0.0-PreDevelopment'
 
-repositories {
+publishing {
+	repositories {
     mavenCentral()
+	maven {
+		name = 'GithubPackages'
+		url = uri("https://maven.pkg.github.com/Developer-lfierro743/novacraft)
+		credentials {
+			username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+            password = project.findProperty("gpr.token") ?: System.getenv("TOKEN")
+		}
+	}
+}
+publications {
+gpr(MavenPublication) {
+	from(components.java)
 }
 
 sourceCompatibility = '17'
