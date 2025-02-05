@@ -1,4 +1,5 @@
 # Project Novacraft
+![1000176556](https://github.com/user-attachments/assets/f4ce8caf-6e73-425d-95b0-490614f4daab)
 > Developed by NovaForge studios
 
 ![License](https://img.shields.io/badge/License-ECL%20(Community%20Edition)-brightgreen) 
