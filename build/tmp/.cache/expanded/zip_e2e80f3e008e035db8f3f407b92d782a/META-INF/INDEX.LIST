@@ -1,0 +1,19 @@
+JarIndex-Version: 1.0
+
+lwjgl-ovr.jar
+META-INF
+META-INF/versions
+META-INF/versions/11
+META-INF/windows
+META-INF/windows/x64
+META-INF/windows/x64/org
+META-INF/windows/x64/org/lwjgl
+META-INF/windows/x64/org/lwjgl/ovr
+META-INF/windows/x86
+META-INF/windows/x86/org
+META-INF/windows/x86/org/lwjgl
+META-INF/windows/x86/org/lwjgl/ovr
+org
+org/lwjgl
+org/lwjgl/ovr
+

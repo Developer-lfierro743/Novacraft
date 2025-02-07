@@ -1,0 +1,11 @@
+JarIndex-Version: 1.0
+
+lwjgl-jawt.jar
+META-INF
+META-INF/versions
+META-INF/versions/11
+org
+org/lwjgl
+org/lwjgl/system
+org/lwjgl/system/jawt
+
