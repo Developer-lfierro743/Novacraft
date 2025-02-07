@@ -110,7 +110,7 @@ Feel free to contribute to open-source components (mods, assets, API).
 
 Violations can lead to removal or bans.
 
---
+---
 
 License Notice
 
