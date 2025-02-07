@@ -6,17 +6,13 @@ import javax.swing.JFrame;
 
 public class Display extends Canvas {
 
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 600;
-    public static final String TITLE = "Novacraft Pre-Development Version";
-
     public Display() {
-        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        setPreferredSize(new Dimension(SharedConstants.GAME_WIDTH, SharedConstants.GAME_HEIGHT));
     }
 
     public static void main(String[] args) {
         Display game = new Display();
-        JFrame frame = new JFrame(TITLE);
+        JFrame frame = new JFrame(SharedConstants.GAME_TITLE);
 
         // Configure the JFrame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
