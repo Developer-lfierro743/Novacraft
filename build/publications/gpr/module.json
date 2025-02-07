@@ -28,10 +28,10 @@
           "name": "Novacraft-v0.0-PreDevelopment.jar",
           "url": "Novacraft-v0.0-PreDevelopment.jar",
           "size": 41290083,
-          "sha512": "f8ab667da0e020307150a371b28318edebb3a8122b1e09efb1c996aefdedb8f5d64f17cd870ead5d498deff067469d5befc112ebdaf39aa3f84136f10c8b18a4",
-          "sha256": "0d99670606ba6f8c00d876050fe808bc73d3c9e9c84385c45e022c4ddb747d41",
-          "sha1": "5c6fbcb27df5753cfaceb8b4b194d0d14442bd48",
-          "md5": "fe516eba0c78849c2a9333af3decd18f"
+          "sha512": "17f8abc926425a7eb4f86712fe207e1dfc54b4757a5787e79a43d59fa4dd346acdb3f3656f363a909cc3ebba8795bf8676580853f7219d055cf145ded12143db",
+          "sha256": "e78253f843cc8101232a7e3ad4feeac57b1e54510b80893581f90c512a97178a",
+          "sha1": "5dc7642ff67189db54af569679b9efdb64be1bdf",
+          "md5": "fb8ae1526fcd70f618fdb07f7019b984"
         }
       ]
     },
@@ -696,10 +696,10 @@
           "name": "Novacraft-v0.0-PreDevelopment.jar",
           "url": "Novacraft-v0.0-PreDevelopment.jar",
           "size": 41290083,
-          "sha512": "f8ab667da0e020307150a371b28318edebb3a8122b1e09efb1c996aefdedb8f5d64f17cd870ead5d498deff067469d5befc112ebdaf39aa3f84136f10c8b18a4",
-          "sha256": "0d99670606ba6f8c00d876050fe808bc73d3c9e9c84385c45e022c4ddb747d41",
-          "sha1": "5c6fbcb27df5753cfaceb8b4b194d0d14442bd48",
-          "md5": "fe516eba0c78849c2a9333af3decd18f"
+          "sha512": "17f8abc926425a7eb4f86712fe207e1dfc54b4757a5787e79a43d59fa4dd346acdb3f3656f363a909cc3ebba8795bf8676580853f7219d055cf145ded12143db",
+          "sha256": "e78253f843cc8101232a7e3ad4feeac57b1e54510b80893581f90c512a97178a",
+          "sha1": "5dc7642ff67189db54af569679b9efdb64be1bdf",
+          "md5": "fb8ae1526fcd70f618fdb07f7019b984"
         }
       ]
     }
