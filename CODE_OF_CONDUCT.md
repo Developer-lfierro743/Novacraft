@@ -7,7 +7,7 @@ Novacraft is a hybrid (closed-source/open-source) project, meaning that while th
 This Code of Conduct ensures a welcoming and respectful environment for all contributors, whether they are reporting issues, suggesting features, or contributing to open-source aspects of the project.
 
 
---
+---
 
 2. Scope
 
@@ -19,7 +19,7 @@ Discussions in official Novacraft GitHub issues, pull requests, Discord, and com
 
 Any public interaction related to Novacraft, including user-generated content, mods, and community discussions.
 
---
+---
 
 3. Community Guidelines
 
@@ -54,7 +54,7 @@ Respect the hybrid license—modifications should be for open-source components 
 
 Do not upload or distribute copyrighted content without proper authorization.
 
---
+---
 
 ❌ Prohibited Behavior
 
@@ -66,7 +66,7 @@ No spamming, self-promotion, or irrelevant content in discussions.
 
 No cheating, hacking, or exploits that disrupt fair gameplay.
 
---
+---
 
 4. Enforcement
 
@@ -78,7 +78,7 @@ Removal of comments, pull requests, or issues.
 
 Temporary or permanent bans from Novacraft’s GitHub and community spaces.
 
---
+---
 
 5. Reporting Issues
 
@@ -91,7 +91,8 @@ Community Moderators (for social interactions in Discord/forums).
 
 Reports will be reviewed confidentially and handled appropriately.
 
---
+---
+
 6. Acknowledgment & Updates
 
 By contributing to Novacraft (whether through mods, discussions, or feature requests), you agree to follow this Code of Conduct.
