@@ -1,4 +1,4 @@
-package com.novaforgestudios.eaglecrafty.core;
+package com.novaforgestudios.novacraft.core;
 
 public class GameConstants {
 

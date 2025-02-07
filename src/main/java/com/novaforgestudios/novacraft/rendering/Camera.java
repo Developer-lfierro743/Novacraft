@@ -1,4 +1,4 @@
-package com.novaforgestudios.eaglecrafty.rendering;
+package com.novaforgestudios.novacraft.rendering;
 
 public class Camera {
 
