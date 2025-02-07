@@ -152,7 +152,7 @@ publishing {
             url = uri("https://maven.pkg.github.com/Developer-lfierro743/Novacraft")
             credentials {
                 username = "Developer-lfierro743"
-                password = "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"
+                password = ""
             }
         }
     }
