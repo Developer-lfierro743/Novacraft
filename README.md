@@ -79,8 +79,6 @@ Novacraft is a passion project inspired by the original vision for Minecraft, be
 ---
 
 ## Links
-
-[Documentation (Coming Soon!)](https://Novacraft.gitbook.io/docs) | 
 [Report Issues](https://github.com/Developer-lfierro743/Novacraft/issues) | 
 [Contact Us](mailto:NovaForgeStudios@mail.com)
 
