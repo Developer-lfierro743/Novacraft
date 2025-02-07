@@ -151,8 +151,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/Developer-lfierro743/Novacraft")
             credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+                username = project.findProperty("gpr.user") ?: System.getenv("Developer-lfierro743")
+                password = project.findProperty("gpr.key") ?: System.getenv("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")
             }
         }
     }

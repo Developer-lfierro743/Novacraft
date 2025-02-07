@@ -1,0 +1,10 @@
+JarIndex-Version: 1.0
+
+lwjgl-fmod.jar
+META-INF
+META-INF/versions
+META-INF/versions/11
+org
+org/lwjgl
+org/lwjgl/fmod
+
