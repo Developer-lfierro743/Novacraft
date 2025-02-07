@@ -25,9 +25,6 @@ public class Display extends Canvas {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
-        
-        game.start();
     }
 
     public void start() {
