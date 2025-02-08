@@ -12,7 +12,7 @@ public class Display {
     private long window;
     private GLFWKeyCallback keyCallback;
     private GLFWWindowCloseCallback closeCallback;
-    private Game game;
+    private final Game game;
 
     public Display(int width, int height, String title, Game game) {
         this.game = game;
