@@ -1,6 +1,4 @@
 # Ignore .idea folder
 .idea
-# Ignore .gradle folder
-.gradle
 #Ingore .vscode folder
 .vscode
