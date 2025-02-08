@@ -357,7 +357,6 @@ MigrationBackup/
 .ionide/
 
 ### Gradle ###
-.gradle
 **/build/
 !src/**/build/
 
