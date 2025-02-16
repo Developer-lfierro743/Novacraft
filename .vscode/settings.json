@@ -1,4 +1,5 @@
 {
 "isGitignoreExtActive": true,
 "java.configuration.updateBuildConfiguration": "automatic",
+"git.ignoreLimitWarning": true,
 }
