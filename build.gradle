@@ -41,6 +41,8 @@ switch (OperatingSystem.current()) {
 		break
 }
 
+println("lwjglNatives: ${lwjglNatives}")
+
 dependencies {
     implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
 

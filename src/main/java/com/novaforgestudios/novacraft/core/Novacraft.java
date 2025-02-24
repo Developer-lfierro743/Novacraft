@@ -17,7 +17,7 @@ public class Novacraft {
         init();
         loop();
         
-        cube.cleanup(); // Clean up cube resources
+        cube.cleanup();
         GLFW.glfwTerminate();
         GLFW.glfwSetErrorCallback(null).free();
     }
