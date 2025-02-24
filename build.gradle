@@ -140,7 +140,7 @@ java {
 
 jar {
     manifest{
-        attributes 'Main-Class': 'com.novaforgestudios.novacraft.core.Novacraft.java'
+        attributes 'Main-Class': 'com.novaforgestudios.novacraft.core';
     }
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
