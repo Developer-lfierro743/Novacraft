@@ -8,7 +8,7 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.MemoryUtil;
 
-public class Novacraft {
+public class Main {
     private long window;
     private Cube cube; // Cube object
 
@@ -69,6 +69,6 @@ public class Novacraft {
     }
 
     public static void main(String[] args) {
-        new Novacraft().run();
+        new Main().run();
     }
 }
