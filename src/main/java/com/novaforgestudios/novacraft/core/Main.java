@@ -39,7 +39,7 @@ public class Main {
         long monitor = GLFW.glfwGetPrimaryMonitor();
         GLFWVidMode vidMode = GLFW.glfwGetVideoMode(monitor);
 
-        window = GLFW.glfwCreateWindow(vidMode.width(), vidMode.height(), "Novacraft Prototype", monitor, MemoryUtil.NULL);
+        window = GLFW.glfwCreateWindow(800,600, "Novacraft Prototype", MemoryUtil.NULL, MemoryUtil.NULL);
         if (window == MemoryUtil.NULL) {
             throw new RuntimeException("Failed to create the GLFW window.");
         }
