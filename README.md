@@ -13,7 +13,9 @@ In Minecraft, you might fall into lava. In Novacraft? You’ll get squished. �
 
 # 🛠️ About Novacraft
 
-Built by Novaforge Studios and crafted by @Developer-lfierro743 (main developer/creator), Novacraft pushes the limits of sandbox games. We're not here to play nice—we’re here to break boundaries and deliver what others won’t.
+Built by Novaforge Studios and crafted by @Developer-lfierro743 (main developer/creator),
+
+Novacraft pushes the limits of sandbox games. We're not here to play nice—we’re here to break boundaries and deliver what others won’t.
 
 # What makes Novacraft different?
 
