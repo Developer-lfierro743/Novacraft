@@ -1,7 +1,10 @@
 package com.novaforgestudios.novacraft.core;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -38,18 +41,17 @@ public class LocalizationManager {
             }
 
             // Parse JSON content
-            JSONParser parser = new JSONParser();
-            JSONObject jsonObject = (JSONObject) parser.parse(jsonString);
+            JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
 
             // Parse the JSON object into key-value pairs
             parseJsonObject(jsonObject, "");
 
             // Extract the language name
-            Object languageObj = jsonObject.get("language");
-            if (languageObj instanceof JSONObject) {
-                Object nameObj = ((JSONObject) languageObj).get("name");
+            JsonElement languageObj = jsonObject.get("language");
+            if (languageObj != null && languageObj.isJsonObject()) {
+                JsonElement nameObj = languageObj.getAsJsonObject().get("name");
                 if (nameObj != null) {
-                    languageName = nameObj.toString();
+                    languageName = nameObj.getAsString();
                 } else {
                     throw new IllegalArgumentException("Missing 'name' field in 'language' object.");
                 }
@@ -69,22 +71,20 @@ public class LocalizationManager {
      * @param jsonObject The JSON object to parse.
      * @param prefix     The current key prefix for nested objects.
      */
-    private static void parseJsonObject(JSONObject jsonObject, String prefix) {
-        for (Object keyObj : jsonObject.keySet()) {
-            String key = (String) keyObj;
-
+    private static void parseJsonObject(JsonObject jsonObject, String prefix) {
+        for (String key : jsonObject.keySet()) {
             // Skip the "language" key since it's handled separately
             if (key.equals("language")) {
                 continue;
             }
 
-            Object value = jsonObject.get(key);
+            JsonElement value = jsonObject.get(key);
             String fullKey = prefix.isEmpty() ? key : prefix + "." + key;
 
-            if (value instanceof JSONObject) {
-                parseJsonObject((JSONObject) value, fullKey);
+            if (value.isJsonObject()) {
+                parseJsonObject(value.getAsJsonObject(), fullKey);
             } else {
-                translations.put(fullKey, value.toString());
+                translations.put(fullKey, value.getAsString());
             }
         }
     }
@@ -137,24 +137,29 @@ public class LocalizationManager {
      */
     public static void saveTranslations(String languageCode) {
         try (OutputStream outputStream = Files.newOutputStream(Paths.get(languageCode + ".json"))) {
-            JSONObject jsonObject = new JSONObject();
-            JSONObject languageObject = new JSONObject();
-            languageObject.put("name", languageName);
-            jsonObject.put("language", languageObject);
+            JsonObject jsonObject = new JsonObject();
+            JsonObject languageObject = new JsonObject();
+            languageObject.addProperty("name", languageName);
+            jsonObject.add("language", languageObject);
 
             // Add all translations to the JSON object
             for (Map.Entry<String, String> entry : translations.entrySet()) {
                 String[] keys = entry.getKey().split("\\.");
-                JSONObject current = jsonObject;
+                JsonObject current = jsonObject;
 
                 for (int i = 0; i < keys.length - 1; i++) {
-                    current = (JSONObject) current.computeIfAbsent(keys[i], k -> new JSONObject());
+                    current = current.getAsJsonObject(keys[i]);
+                    if (current == null) {
+                        current = new JsonObject();
+                        jsonObject.add(keys[i], current);
+                    }
                 }
-                current.put(keys[keys.length - 1], entry.getValue());
+                current.addProperty(keys[keys.length - 1], entry.getValue());
             }
 
             // Write the updated JSON back to the file
-            outputStream.write(jsonObject.toJSONString().getBytes());
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            outputStream.write(gson.toJson(jsonObject).getBytes());
 
         } catch (Exception e) {
             System.err.println("Error saving translations: " + e.getMessage());

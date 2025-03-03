@@ -51,15 +51,13 @@ dependencies {
     // LWJGL BOM and Modules
     implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
     def lwjglModules = [
-        "lwjgl", "lwjgl-assimp", "lwjgl-bgfx", "lwjgl-cuda", "lwjgl-egl", "lwjgl-fmod",
-        "lwjgl-freetype", "lwjgl-glfw", "lwjgl-harfbuzz", "lwjgl-hwloc", "lwjgl-jawt",
-        "lwjgl-jemalloc", "lwjgl-ktx", "lwjgl-libdivide", "lwjgl-llvm", "lwjgl-lmdb",
-        "lwjgl-lz4", "lwjgl-meow", "lwjgl-meshoptimizer", "lwjgl-msdfgen", "lwjgl-nanovg",
-        "lwjgl-nfd", "lwjgl-nuklear", "lwjgl-odbc", "lwjgl-openal", "lwjgl-opencl",
-        "lwjgl-opengl", "lwjgl-opengles", "lwjgl-openvr", "lwjgl-openxr", "lwjgl-opus",
-        "lwjgl-ovr", "lwjgl-par", "lwjgl-remotery", "lwjgl-rpmalloc", "lwjgl-shaderc",
-        "lwjgl-spvc", "lwjgl-sse", "lwjgl-stb", "lwjgl-tinyexr", "lwjgl-tinyfd",
-        "lwjgl-tootle", "lwjgl-vma", "lwjgl-vulkan", "lwjgl-xxhash", "lwjgl-yoga",
+        "lwjgl", "lwjgl-assimp", "lwjgl-bgfx", "lwjgl-freetype", "lwjgl-glfw",
+        "lwjgl-harfbuzz", "lwjgl-jemalloc", "lwjgl-ktx", "lwjgl-libdivide", "lwjgl-llvm",
+        "lwjgl-lmdb", "lwjgl-lz4", "lwjgl-meow", "lwjgl-meshoptimizer", "lwjgl-msdfgen",
+        "lwjgl-nanovg", "lwjgl-nfd", "lwjgl-nuklear", "lwjgl-openal", "lwjgl-opengl",
+        "lwjgl-opengles", "lwjgl-openvr", "lwjgl-openxr", "lwjgl-opus", "lwjgl-par",
+        "lwjgl-remotery", "lwjgl-rpmalloc", "lwjgl-shaderc", "lwjgl-spvc", "lwjgl-stb",
+        "lwjgl-tinyexr", "lwjgl-tinyfd", "lwjgl-vma", "lwjgl-xxhash", "lwjgl-yoga",
         "lwjgl-zstd"
     ]
     lwjglModules.each { module ->
@@ -69,7 +67,7 @@ dependencies {
 
     // Additional Dependencies
     implementation "org.joml:joml:${jomlVersion}"
-    implementation 'com.google.code.gson:gson:2.11.1'
+    implementation 'com.google.code.gson:gson:2.12.1'
     implementation 'org.json:json:20250107'
 }
 
