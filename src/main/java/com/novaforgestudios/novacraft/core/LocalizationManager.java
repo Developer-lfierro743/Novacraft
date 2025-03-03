@@ -1,7 +1,7 @@
 package com.novaforgestudios.novacraft.core;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import org.
+
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -25,7 +25,7 @@ public class LocalizationManager {
                 throw new IllegalArgumentException("Language file not found: " + fileName);
             }
 
-            Scanner scanner = new Scanner(inputStream).useDelimiter("\A");
+            Scanner scanner = new Scanner(inputStream).useDelimiter("\b");
             String jsonString = scanner.hasNext() ? scanner.next() : "";
             scanner.close();
 
