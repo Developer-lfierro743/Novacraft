@@ -135,18 +135,28 @@ public class Cube {
         shader = new Shader(vertexShaderSource, fragmentShaderSource);
     }
 
-    public void render() {
+    /**
+     * Renders the cube using the provided view and projection matrices.
+     *
+     * @param viewMatrix       The view matrix for camera positioning.
+     * @param projectionMatrix The projection matrix for perspective projection.
+     */
+    public void render(Matrix4f viewMatrix, Matrix4f projectionMatrix) {
         shader.bind();
-        
+
+        // Set the model, view, and projection matrices as uniforms
         shader.setUniform("model", modelMatrix);
+        shader.setUniform("view", viewMatrix);
+        shader.setUniform("projection", projectionMatrix);
+
         GL30.glBindVertexArray(vaoId);
-        GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, eboId);
         GL11.glDrawElements(GL11.GL_TRIANGLES, 36, GL11.GL_UNSIGNED_INT, 0);
         GL30.glBindVertexArray(0);
+
         shader.unbind();
     }
-    
-    public Shader getShader(){
+
+    public Shader getShader() {
         return shader;
     }
 
