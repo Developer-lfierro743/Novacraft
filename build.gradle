@@ -93,6 +93,8 @@ dependencies {
 	implementation "org.lwjgl:lwjgl-xxhash"
 	implementation "org.lwjgl:lwjgl-yoga"
 	implementation "org.lwjgl:lwjgl-zstd"
+	implementation 'com.google.code.gson:1.12.1'
+	
 	runtimeOnly "org.lwjgl:lwjgl::$lwjglNatives"
 	runtimeOnly "org.lwjgl:lwjgl-assimp::$lwjglNatives"
 	runtimeOnly "org.lwjgl:lwjgl-bgfx::$lwjglNatives"
@@ -132,6 +134,7 @@ dependencies {
 	runtimeOnly "org.lwjgl:lwjgl-yoga::$lwjglNatives"
 	runtimeOnly "org.lwjgl:lwjgl-zstd::$lwjglNatives"
 	implementation "org.joml:joml:${jomlVersion}"
+
 
 }
 
