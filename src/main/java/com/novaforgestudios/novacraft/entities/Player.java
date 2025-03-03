@@ -15,20 +15,32 @@ public class Player {
     private static final float JUMP_STRENGTH = 0.2f; // Jump velocity
     private boolean isOnGround = true;  // Tracks if the player is on the ground
 
+    // Player size (scaled down to 0.8x0.8x0.8)
+    private static final float PLAYER_WIDTH = 0.8f;
+    private static final float PLAYER_HEIGHT = 0.8f;
+
     public Player() {
         position = new Vector3f(0, 0.5f, 0); // Start on top of the cube's cyan face (y = 0.5)
         cube = new Cube();                  // Use a cube to represent the player
     }
 
     /**
-     * Moves the player in the specified direction.
+     * Moves the player in the specified direction, checking for collisions.
      *
      * @param dx Change in the X direction (left/right).
      * @param dy Change in the Y direction (up/down).
      * @param dz Change in the Z direction (forward/backward).
      */
-    public void move(float dx, float dy, float dz) {
-        position.add(dx, 0, dz); // Move horizontally
+    public void move(float dx, float dy, float dz, Cube otherCube) {
+        // Temporarily move the player
+        position.add(dx, 0, dz);
+
+        // Check for collisions with the other cube
+        if (checkCollision(otherCube)) {
+            // Revert the movement if a collision is detected
+            position.sub(dx, 0, dz);
+        }
+
         applyGravity();
     }
 
@@ -57,6 +69,35 @@ public class Player {
                 isOnGround = true; // Player is back on the ground
             }
         }
+    }
+
+    /**
+     * Checks for collisions between the player and another cube.
+     *
+     * @param otherCube The other cube to check for collisions.
+     * @return True if there is a collision, false otherwise.
+     */
+    private boolean checkCollision(Cube otherCube) {
+        // Define the player's bounding box
+        float playerMinX = position.x - PLAYER_WIDTH / 2;
+        float playerMaxX = position.x + PLAYER_WIDTH / 2;
+        float playerMinY = position.y - PLAYER_HEIGHT / 2;
+        float playerMaxY = position.y + PLAYER_HEIGHT / 2;
+        float playerMinZ = position.z - PLAYER_WIDTH / 2;
+        float playerMaxZ = position.z + PLAYER_WIDTH / 2;
+
+        // Define the other cube's bounding box (assuming it's centered at (0, 0, 0) with size 1x1x1)
+        float cubeMinX = -0.5f;
+        float cubeMaxX = 0.5f;
+        float cubeMinY = -0.5f;
+        float cubeMaxY = 0.5f;
+        float cubeMinZ = -0.5f;
+        float cubeMaxZ = 0.5f;
+
+        // Check for overlap on all axes
+        return !(playerMaxX < cubeMinX || playerMinX > cubeMaxX ||
+                 playerMaxY < cubeMinY || playerMinY > cubeMaxY ||
+                 playerMaxZ < cubeMinZ || playerMinZ > cubeMaxZ);
     }
 
     /**
