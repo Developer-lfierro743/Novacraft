@@ -1,7 +1,7 @@
 package com.novaforgestudios.novacraft.core;
 
-import org.
-
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -9,29 +9,53 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class LocalizationManager {
-    private static Map<String, String> translations = new HashMap<>();
+    private static final Map<String, String> translations = new HashMap<>();
     private static String languageName;
 
-    // Load translations dynamically
+    /**
+     * Load translations dynamically from a JSON file.
+     *
+     * @param languageCode The language code (e.g., "en", "fr").
+     */
     public static void loadTranslations(String languageCode) {
-        try {
-            String fileName = languageCode + ".json";
-            InputStream inputStream = LocalizationManager.class.getClassLoader().getResourceAsStream(fileName);
+        if (!languageCode.matches("[a-z]{2}")) {
+            throw new IllegalArgumentException("Invalid language code: " + languageCode);
+        }
 
+        String fileName = languageCode + ".json";
+
+        try (InputStream inputStream = LocalizationManager.class.getClassLoader().getResourceAsStream(fileName)) {
             if (inputStream == null) {
                 throw new IllegalArgumentException("Language file not found: " + fileName);
             }
 
-            Scanner scanner = new Scanner(inputStream).useDelimiter("\b");
-            String jsonString = scanner.hasNext() ? scanner.next() : "";
-            scanner.close();
+            // Read the entire content of the input stream as a string
+            String jsonString;
+            try (var scanner = new java.util.Scanner(inputStream).useDelimiter("\\A")) {
+                jsonString = scanner.hasNext() ? scanner.next() : "";
+            }
 
-            JSONObject jsonObject = (JSONObject) new JSONParser().parse(jsonString);
+            // Parse JSON content
+            JSONParser parser = new JSONParser();
+            JSONObject jsonObject = (JSONObject) parser.parse(jsonString);
+
+            // Parse the JSON object into key-value pairs
             parseJsonObject(jsonObject, "");
-            languageName = ((JSONObject) jsonObject.get("language")).get("name").toString();
+
+            // Extract the language name
+            Object languageObj = jsonObject.get("language");
+            if (languageObj instanceof JSONObject) {
+                Object nameObj = ((JSONObject) languageObj).get("name");
+                if (nameObj != null) {
+                    languageName = nameObj.toString();
+                } else {
+                    throw new IllegalArgumentException("Missing 'name' field in 'language' object.");
+                }
+            } else {
+                throw new IllegalArgumentException("Invalid or missing 'language' object in JSON.");
+            }
 
         } catch (Exception e) {
             System.err.println("Error loading language file: " + e.getMessage());
@@ -39,12 +63,21 @@ public class LocalizationManager {
         }
     }
 
-    // Parse the JSON object and store key-value pairs
+    /**
+     * Parse the JSON object recursively and store key-value pairs in the translations map.
+     *
+     * @param jsonObject The JSON object to parse.
+     * @param prefix     The current key prefix for nested objects.
+     */
     private static void parseJsonObject(JSONObject jsonObject, String prefix) {
         for (Object keyObj : jsonObject.keySet()) {
             String key = (String) keyObj;
-            if (key.equals("language"))
+
+            // Skip the "language" key since it's handled separately
+            if (key.equals("language")) {
                 continue;
+            }
+
             Object value = jsonObject.get(key);
             String fullKey = prefix.isEmpty() ? key : prefix + "." + key;
 
@@ -56,36 +89,58 @@ public class LocalizationManager {
         }
     }
 
-    // Get translation for a key, with optional dynamic arguments
+    /**
+     * Get the translation for a given key, with optional dynamic arguments.
+     *
+     * @param key  The translation key.
+     * @param args Optional arguments for formatting.
+     * @return The translated string or the key itself if no translation is found.
+     */
     public static String getTranslation(String key, Object... args) {
         String translation = translations.get(key);
         if (translation == null) {
             System.err.println("Translation not found for key: " + key);
-            return key;
+            return key; // Fallback to the key itself
         }
 
-        return String.format(translation, args);
+        try {
+            return String.format(translation, args);
+        } catch (Exception e) {
+            System.err.println("Error formatting translation for key: " + key);
+            return translation; // Return untranslated string as fallback
+        }
     }
 
-    // Get the name of the language
+    /**
+     * Get the name of the currently loaded language.
+     *
+     * @return The language name.
+     */
     public static String getLanguageName() {
         return languageName;
     }
 
-    // Add or modify a dynamic translation at runtime
+    /**
+     * Add or modify a translation at runtime.
+     *
+     * @param key   The translation key.
+     * @param value The translation value.
+     */
     public static void addDynamicTranslation(String key, String value) {
         translations.put(key, value);
     }
 
-    // Save modified translations back to the JSON file
+    /**
+     * Save modified translations back to the JSON file.
+     *
+     * @param languageCode The language code (e.g., "en", "fr").
+     */
     public static void saveTranslations(String languageCode) {
-        try {
+        try (OutputStream outputStream = Files.newOutputStream(Paths.get(languageCode + ".json"))) {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("language", new JSONObject() {
-                {
-                    put("name", languageName);
-                }
-            });
+            JSONObject languageObject = new JSONObject();
+            languageObject.put("name", languageName);
+            jsonObject.put("language", languageObject);
 
             // Add all translations to the JSON object
             for (Map.Entry<String, String> entry : translations.entrySet()) {
@@ -99,9 +154,7 @@ public class LocalizationManager {
             }
 
             // Write the updated JSON back to the file
-            OutputStream outputStream = Files.newOutputStream(Paths.get(languageCode + ".json"));
             outputStream.write(jsonObject.toJSONString().getBytes());
-            outputStream.close();
 
         } catch (Exception e) {
             System.err.println("Error saving translations: " + e.getMessage());
