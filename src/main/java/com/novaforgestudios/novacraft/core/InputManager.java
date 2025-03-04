@@ -24,6 +24,8 @@ public class InputManager {
         androidKeyMap.put('s', GLFW.GLFW_KEY_S);
         androidKeyMap.put('d', GLFW.GLFW_KEY_D);
         androidKeyMap.put(' ', GLFW.GLFW_KEY_SPACE); // Spacebar
+        androidKeyMap.put('\n', GLFW.GLFW_KEY_ENTER); // Enter key
+        androidKeyMap.put('\b', GLFW.GLFW_KEY_BACKSPACE); // Backspace
     }
 
     /**
@@ -35,6 +37,7 @@ public class InputManager {
     public void setKeyState(int key, boolean state) {
         if (key >= 0 && key < keys.length) {
             keys[key] = state;
+            System.out.println("Key state updated: " + key + " -> " + state); // Debugging output
         }
     }
 
@@ -49,6 +52,9 @@ public class InputManager {
             Integer glfwKey = androidKeyMap.get(Character.toLowerCase(character));
             if (glfwKey != null) {
                 setKeyState(glfwKey, state);
+                System.out.println("Mapped character '" + character + "' to GLFW key: " + glfwKey); // Debugging output
+            } else {
+                System.out.println("Unmapped character: " + character); // Debugging output
             }
         }
     }
@@ -62,6 +68,7 @@ public class InputManager {
     public void setMouseButtonState(int button, boolean state) {
         if (button >= 0 && button < mouseButtons.length) {
             mouseButtons[button] = state;
+            System.out.println("Mouse button state updated: " + button + " -> " + state); // Debugging output
         }
     }
 
@@ -74,6 +81,7 @@ public class InputManager {
     public void setMousePosition(double x, double y) {
         mouseX = x;
         mouseY = y;
+        System.out.println("Mouse position updated: (" + x + ", " + y + ")"); // Debugging output
     }
 
     /**

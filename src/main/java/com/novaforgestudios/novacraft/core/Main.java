@@ -2,7 +2,7 @@ package com.novaforgestudios.novacraft.core;
 
 import com.novaforgestudios.novacraft.entities.Player;
 import com.novaforgestudios.novacraft.rendering.Cube;
-import com.novaforgestudios.novacraft.utils.DebugOverlay;
+import com.novaforgestudios.novacraft.utils.FreeTypeFontRenderer;
 import com.novaforgestudios.novacraft.utils.FPSCounter;
 import com.novaforgestudios.novacraft.utils.GraphicsUtils;
 import com.novaforgestudios.novacraft.utils.PlatformUtils;
@@ -32,17 +32,25 @@ public class Main {
     // InputManager instance
     private InputManager inputManager;
 
-    // DebugOverlay instance
-    private DebugOverlay debugOverlay;
+    // FreeTypeFontRenderer instance
+    private FreeTypeFontRenderer fontRenderer;
+
+    // Debug Menu Variables
     private boolean showDebugMenu = false; // Toggle debug menu with F3
 
     // Frame time tracking for frame rate independence
-    private double lastFrameTime = System.nanoTime() / 1_000_000_000.0;
+    private double lastFrameTime = System.nanoTime();
 
     // Variables to track last mouse position
     private double lastMouseX = WINDOW_WIDTH / 2.0;
     private double lastMouseY = WINDOW_HEIGHT / 2.0;
     private boolean firstMouse = true;
+
+    // Mouse sensitivity
+    private static final float MOUSE_SENSITIVITY = 0.1f;
+
+    // Debug mode flag
+    private boolean debugMode = true;
 
     public void init() {
         if (!GLFW.glfwInit()) {
@@ -88,8 +96,14 @@ public class Main {
         // Initialize InputManager
         inputManager = new InputManager();
 
-        // Initialize DebugOverlay
-        debugOverlay = new DebugOverlay();
+        // Initialize FreeType Font Renderer
+        try {
+            fontRenderer = new FreeTypeFontRenderer("/assets/fonts/OpenSans-Regular.ttf", 24);
+            log("Successfully loaded font: /assets/fonts/OpenSans-Regular.ttf");
+        } catch (RuntimeException e) {
+            System.err.println("Failed to load font. Using default rendering.");
+            fontRenderer = null; // Fallback to no font rendering
+        }
 
         // Set up key callbacks
         GLFW.glfwSetKeyCallback(window, (windowHandle, key, scancode, action, mods) -> {
@@ -124,8 +138,8 @@ public class Main {
                 firstMouse = false;
             }
 
-            float xOffset = (float) (xpos - lastMouseX);
-            float yOffset = (float) (lastMouseY - ypos); // Reversed since y-coordinates go from bottom to top
+            float xOffset = (float) (xpos - lastMouseX) * MOUSE_SENSITIVITY;
+            float yOffset = (float) (lastMouseY - ypos) * MOUSE_SENSITIVITY; // Reversed since y-coordinates go from bottom to top
 
             lastMouseX = xpos;
             lastMouseY = ypos;
@@ -149,9 +163,7 @@ public class Main {
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
             // Calculate delta time
-            double currentFrameTime = System.nanoTime() / 1_000_000_000.0;
-            float deltaTime = (float) (currentFrameTime - lastFrameTime);
-            lastFrameTime = currentFrameTime;
+            float deltaTime = calculateDeltaTime();
 
             // Update FPS counter
             FPSCounter.update();
@@ -169,10 +181,9 @@ public class Main {
             cube.render(viewMatrix, projectionMatrix);
             player.render(viewMatrix, projectionMatrix);
 
-            // Render debug overlay if enabled
+            // Render debug menu if enabled
             if (showDebugMenu) {
-                debugOverlay.update(player, camera, /* loadedChunks */ 0, /* loadedEntities */ 0);
-                debugOverlay.render();
+                renderDebugMenu();
             }
 
             GLFW.glfwSwapBuffers(window);
@@ -183,46 +194,112 @@ public class Main {
     }
 
     /**
+     * Calculates delta time for frame rate independence.
+     */
+    private float calculateDeltaTime() {
+        double currentFrameTime = System.nanoTime();
+        float deltaTime = (float) ((currentFrameTime - lastFrameTime) / 1_000_000_000.0);
+        lastFrameTime = currentFrameTime;
+        return deltaTime;
+    }
+
+    /**
      * Handles user input for player movement and jumping.
      */
     private void handleInput(float deltaTime) {
-        float speed = MOVEMENT_SPEED * deltaTime; // Scale movement by delta time
+        handleMovement(deltaTime);
+        handleJumping();
 
-        // Adjust speed for sprinting or sneaking
-        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_LEFT_SHIFT)) {
-            speed *= SPRINT_MULTIPLIER; // Increase speed for sprinting
-        } else if (inputManager.isKeyPressed(GLFW.GLFW_KEY_LEFT_CONTROL)) {
-            speed *= SNEAK_MULTIPLIER; // Decrease speed for sneaking
-        }
-
-        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_W)) {
-            player.move(0, 0, -speed, cube); // Move forward
-        }
-        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_S)) {
-            player.move(0, 0, speed, cube); // Move backward
-        }
-        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_A)) {
-            player.move(-speed, 0, 0, cube); // Move left
-        }
-        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_D)) {
-            player.move(speed, 0, 0, cube); // Move right
-        }
-        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_SPACE)) {
-            player.jump(); // Jump when spacebar is pressed
-        }
-
-        // Example: Check if the left mouse button is pressed
+        // Handle mouse input
         if (inputManager.isMouseButtonPressed(GLFW.GLFW_MOUSE_BUTTON_LEFT)) {
-            System.out.println("Left mouse button pressed at (" + inputManager.getMouseX() + ", " + inputManager.getMouseY() + ")");
+            log("Left mouse button pressed at (" + inputManager.getMouseX() + ", " + inputManager.getMouseY() + ")");
         }
     }
 
+    /**
+     * Handles player movement.
+     */
+    private void handleMovement(float deltaTime) {
+        float speed = MOVEMENT_SPEED * deltaTime;
+
+        // Adjust speed for sprinting or sneaking
+        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_LEFT_SHIFT)) {
+            speed *= SPRINT_MULTIPLIER;
+        } else if (inputManager.isKeyPressed(GLFW.GLFW_KEY_LEFT_CONTROL)) {
+            speed *= SNEAK_MULTIPLIER;
+        }
+
+        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_W)) {
+            player.move(0, 0, -speed, cube);
+        }
+        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_S)) {
+            player.move(0, 0, speed, cube);
+        }
+        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_A)) {
+            player.move(-speed, 0, 0, cube);
+        }
+        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_D)) {
+            player.move(speed, 0, 0, cube);
+        }
+    }
+
+    /**
+     * Handles player jumping.
+     */
+    private void handleJumping() {
+        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_SPACE)) {
+            player.jump();
+        }
+    }
+
+    /**
+     * Renders the debug menu using FreeTypeFontRenderer.
+     */
+    private void renderDebugMenu() {
+        if (fontRenderer == null) {
+            return; // Skip rendering if fontRenderer is not initialized
+        }
+
+        GL11.glDisable(GL11.GL_DEPTH_TEST); // Disable depth testing for 2D rendering
+        GL11.glColor3f(1.0f, 1.0f, 1.0f); // Set text color to white
+
+        String debugInfo =
+            "Player Position: " + player.getPosition() + "\n" +
+            "Camera Yaw: " + camera.getYaw() + "\n" +
+            "Camera Pitch: " + camera.getPitch() + "\n" +
+            "FPS: " + FPSCounter.getFPS() + "\n" +
+            "Delta Time: " + FPSCounter.getDeltaTime();
+
+        float x = 10, y = 10, scale = 1.0f;
+        for (String line : debugInfo.split("\n")) {
+            fontRenderer.renderText(line, x, y, scale);
+            y += 20; // Move to the next line
+        }
+
+        GL11.glEnable(GL11.GL_DEPTH_TEST); // Re-enable depth testing
+    }
+
+    /**
+     * Cleans up resources.
+     */
     private void cleanup() {
         cube.cleanup();
         player.cleanup();
+        if (fontRenderer != null) {
+            fontRenderer.cleanup(); // Dispose FreeType resources
+        }
         GLFW.glfwDestroyWindow(window);
         GLFW.glfwTerminate();
         GLFW.glfwSetErrorCallback(null).free();
+    }
+
+    /**
+     * Logs messages if debug mode is enabled.
+     */
+    private void log(String message) {
+        if (debugMode) {
+            System.out.println(message);
+        }
     }
 
     public static void main(String[] args) {
