@@ -1,6 +1,10 @@
 package com.novaforgestudios.novacraft.core;
 
 import org.lwjgl.glfw.GLFW;
+import com.novaforgestudios.novacraft.utils.PlatformUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class InputManager {
     // Arrays to track key and mouse button states
@@ -9,6 +13,18 @@ public class InputManager {
 
     // Variables to track mouse position
     private double mouseX, mouseY;
+
+    // Key mappings for Android
+    private final Map<Character, Integer> androidKeyMap = new HashMap<>();
+
+    public InputManager() {
+        // Initialize Android key mappings
+        androidKeyMap.put('w', GLFW.GLFW_KEY_W);
+        androidKeyMap.put('a', GLFW.GLFW_KEY_A);
+        androidKeyMap.put('s', GLFW.GLFW_KEY_S);
+        androidKeyMap.put('d', GLFW.GLFW_KEY_D);
+        androidKeyMap.put(' ', GLFW.GLFW_KEY_SPACE); // Spacebar
+    }
 
     /**
      * Sets the state of a key (pressed or released).
@@ -19,6 +35,21 @@ public class InputManager {
     public void setKeyState(int key, boolean state) {
         if (key >= 0 && key < keys.length) {
             keys[key] = state;
+        }
+    }
+
+    /**
+     * Sets the state of a key based on a character input (for Android).
+     *
+     * @param character The character input from the virtual keyboard.
+     * @param state     True if the key is pressed, false if released.
+     */
+    public void setKeyStateFromCharacter(char character, boolean state) {
+        if (PlatformUtils.isAndroid()) {
+            Integer glfwKey = androidKeyMap.get(Character.toLowerCase(character));
+            if (glfwKey != null) {
+                setKeyState(glfwKey, state);
+            }
         }
     }
 

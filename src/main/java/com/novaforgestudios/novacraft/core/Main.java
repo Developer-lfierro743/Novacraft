@@ -2,7 +2,10 @@ package com.novaforgestudios.novacraft.core;
 
 import com.novaforgestudios.novacraft.entities.Player;
 import com.novaforgestudios.novacraft.rendering.Cube;
+import com.novaforgestudios.novacraft.utils.DebugOverlay;
+import com.novaforgestudios.novacraft.utils.FPSCounter;
 import com.novaforgestudios.novacraft.utils.GraphicsUtils;
+import com.novaforgestudios.novacraft.utils.PlatformUtils;
 import org.joml.Matrix4f;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL;
@@ -29,8 +32,17 @@ public class Main {
     // InputManager instance
     private InputManager inputManager;
 
+    // DebugOverlay instance
+    private DebugOverlay debugOverlay;
+    private boolean showDebugMenu = false; // Toggle debug menu with F3
+
     // Frame time tracking for frame rate independence
     private double lastFrameTime = System.nanoTime() / 1_000_000_000.0;
+
+    // Variables to track last mouse position
+    private double lastMouseX = WINDOW_WIDTH / 2.0;
+    private double lastMouseY = WINDOW_HEIGHT / 2.0;
+    private boolean firstMouse = true;
 
     public void init() {
         if (!GLFW.glfwInit()) {
@@ -76,11 +88,27 @@ public class Main {
         // Initialize InputManager
         inputManager = new InputManager();
 
+        // Initialize DebugOverlay
+        debugOverlay = new DebugOverlay();
+
         // Set up key callbacks
         GLFW.glfwSetKeyCallback(window, (windowHandle, key, scancode, action, mods) -> {
             boolean isPressed = action == GLFW.GLFW_PRESS || action == GLFW.GLFW_REPEAT;
             inputManager.setKeyState(key, isPressed);
+
+            // Toggle debug menu with F3
+            if (key == GLFW.GLFW_KEY_F3 && action == GLFW.GLFW_PRESS) {
+                showDebugMenu = !showDebugMenu;
+            }
         });
+
+        // Handle Android-specific input
+        if (PlatformUtils.isAndroid()) {
+            GLFW.glfwSetCharCallback(window, (windowHandle, codepoint) -> {
+                char character = (char) codepoint;
+                inputManager.setKeyStateFromCharacter(character, true); // Key pressed
+            });
+        }
 
         // Set up mouse button callbacks
         GLFW.glfwSetMouseButtonCallback(window, (windowHandle, button, action, mods) -> {
@@ -90,7 +118,20 @@ public class Main {
 
         // Set up cursor position callbacks
         GLFW.glfwSetCursorPosCallback(window, (windowHandle, xpos, ypos) -> {
-            inputManager.setMousePosition(xpos, ypos);
+            if (firstMouse) {
+                lastMouseX = xpos;
+                lastMouseY = ypos;
+                firstMouse = false;
+            }
+
+            float xOffset = (float) (xpos - lastMouseX);
+            float yOffset = (float) (lastMouseY - ypos); // Reversed since y-coordinates go from bottom to top
+
+            lastMouseX = xpos;
+            lastMouseY = ypos;
+
+            // Rotate the camera
+            camera.rotate(xOffset, yOffset);
         });
     }
 
@@ -112,6 +153,9 @@ public class Main {
             float deltaTime = (float) (currentFrameTime - lastFrameTime);
             lastFrameTime = currentFrameTime;
 
+            // Update FPS counter
+            FPSCounter.update();
+
             // Handle player movement and jumping
             handleInput(deltaTime);
 
@@ -124,6 +168,12 @@ public class Main {
             // Render the cube and player
             cube.render(viewMatrix, projectionMatrix);
             player.render(viewMatrix, projectionMatrix);
+
+            // Render debug overlay if enabled
+            if (showDebugMenu) {
+                debugOverlay.update(player, camera, /* loadedChunks */ 0, /* loadedEntities */ 0);
+                debugOverlay.render();
+            }
 
             GLFW.glfwSwapBuffers(window);
             GLFW.glfwPollEvents();
