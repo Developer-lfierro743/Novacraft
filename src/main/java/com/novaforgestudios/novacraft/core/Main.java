@@ -17,11 +17,20 @@ public class Main {
     private Player player;
     private Camera camera;
 
-    // Movement speed
-    private static final float MOVEMENT_SPEED = 0.05f;
+    // Real-world walking speed in meters per second (matches Minecraft)
+    private static final float MOVEMENT_SPEED = 4.317f;
 
-    // Key states
-    private boolean[] keys = new boolean[GLFW.GLFW_KEY_LAST];
+    // Sprinting multiplier (30% faster)
+    private static final float SPRINT_MULTIPLIER = 1.3f;
+
+    // Sneaking multiplier (40% slower)
+    private static final float SNEAK_MULTIPLIER = 0.6f;
+
+    // InputManager instance
+    private InputManager inputManager;
+
+    // Frame time tracking for frame rate independence
+    private double lastFrameTime = System.nanoTime() / 1_000_000_000.0;
 
     public void init() {
         if (!GLFW.glfwInit()) {
@@ -64,11 +73,24 @@ public class Main {
         camera = new Camera();
         cube = new Cube();
 
+        // Initialize InputManager
+        inputManager = new InputManager();
+
         // Set up key callbacks
         GLFW.glfwSetKeyCallback(window, (windowHandle, key, scancode, action, mods) -> {
-            if (key >= 0 && key < keys.length) {
-                keys[key] = action == GLFW.GLFW_PRESS || action == GLFW.GLFW_REPEAT;
-            }
+            boolean isPressed = action == GLFW.GLFW_PRESS || action == GLFW.GLFW_REPEAT;
+            inputManager.setKeyState(key, isPressed);
+        });
+
+        // Set up mouse button callbacks
+        GLFW.glfwSetMouseButtonCallback(window, (windowHandle, button, action, mods) -> {
+            boolean isPressed = action == GLFW.GLFW_PRESS;
+            inputManager.setMouseButtonState(button, isPressed);
+        });
+
+        // Set up cursor position callbacks
+        GLFW.glfwSetCursorPosCallback(window, (windowHandle, xpos, ypos) -> {
+            inputManager.setMousePosition(xpos, ypos);
         });
     }
 
@@ -76,17 +98,22 @@ public class Main {
         init();
 
         Matrix4f projectionMatrix = new Matrix4f().perspective(
-            (float) Math.toRadians(45), // Field of view
-            (float) WINDOW_WIDTH / WINDOW_HEIGHT, // Aspect ratio
-            0.1f, // Near plane
-            100.0f // Far plane
+            (float) Math.toRadians(45),
+            (float) WINDOW_WIDTH / WINDOW_HEIGHT, 
+            0.1f,
+            100.0f
         );
 
         while (!GLFW.glfwWindowShouldClose(window)) {
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
+            // Calculate delta time
+            double currentFrameTime = System.nanoTime() / 1_000_000_000.0;
+            float deltaTime = (float) (currentFrameTime - lastFrameTime);
+            lastFrameTime = currentFrameTime;
+
             // Handle player movement and jumping
-            handleInput();
+            handleInput(deltaTime);
 
             // Update the camera to follow the player
             camera.getPosition().set(player.getPosition()).add(0, 1, 3); // Offset for third-person view
@@ -108,21 +135,35 @@ public class Main {
     /**
      * Handles user input for player movement and jumping.
      */
-    private void handleInput() {
-        if (keys[GLFW.GLFW_KEY_W]) {
-            player.move(0, 0, -MOVEMENT_SPEED); // Move forward
+    private void handleInput(float deltaTime) {
+        float speed = MOVEMENT_SPEED * deltaTime; // Scale movement by delta time
+
+        // Adjust speed for sprinting or sneaking
+        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_LEFT_SHIFT)) {
+            speed *= SPRINT_MULTIPLIER; // Increase speed for sprinting
+        } else if (inputManager.isKeyPressed(GLFW.GLFW_KEY_LEFT_CONTROL)) {
+            speed *= SNEAK_MULTIPLIER; // Decrease speed for sneaking
         }
-        if (keys[GLFW.GLFW_KEY_S]) {
-            player.move(0, 0, MOVEMENT_SPEED); // Move backward
+
+        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_W)) {
+            player.move(0, 0, -speed, cube); // Move forward
         }
-        if (keys[GLFW.GLFW_KEY_A]) {
-            player.move(-MOVEMENT_SPEED, 0, 0); // Move left
+        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_S)) {
+            player.move(0, 0, speed, cube); // Move backward
         }
-        if (keys[GLFW.GLFW_KEY_D]) {
-            player.move(MOVEMENT_SPEED, 0, 0); // Move right
+        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_A)) {
+            player.move(-speed, 0, 0, cube); // Move left
         }
-        if (keys[GLFW.GLFW_KEY_SPACE]) {
+        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_D)) {
+            player.move(speed, 0, 0, cube); // Move right
+        }
+        if (inputManager.isKeyPressed(GLFW.GLFW_KEY_SPACE)) {
             player.jump(); // Jump when spacebar is pressed
+        }
+
+        // Example: Check if the left mouse button is pressed
+        if (inputManager.isMouseButtonPressed(GLFW.GLFW_MOUSE_BUTTON_LEFT)) {
+            System.out.println("Left mouse button pressed at (" + inputManager.getMouseX() + ", " + inputManager.getMouseY() + ")");
         }
     }
 
