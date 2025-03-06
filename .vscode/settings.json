@@ -1,8 +1,37 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
     "cSpell.words": [
+        "armv",
+        "assimp",
+        "bgfx",
+        "fmod",
         "foojay",
+        "freetype",
         "GLFW",
-        "novacraft"
+        "harfbuzz",
+        "hwloc",
+        "jawt",
+        "jemalloc",
+        "joml",
+        "libdivide",
+        "lmdb",
+        "LWJGL",
+        "meshoptimizer",
+        "msdfgen",
+        "nanovg",
+        "novacraft",
+        "nuklear",
+        "openal",
+        "opencl",
+        "opengl",
+        "opengles",
+        "remotery",
+        "riscv",
+        "rpmalloc",
+        "shaderc",
+        "tinyexr",
+        "tinyfd",
+        "xxhash",
+        "zstd"
     ]
 }
