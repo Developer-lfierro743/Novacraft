@@ -1,101 +1,25 @@
-// Plugins and Project Metadata
 plugins {
     id 'java'
     id 'application'
 }
 
-group = "com.novaforgestudios"
-version = "v0.0.0"
-
-// Repositories
 repositories {
     mavenCentral()
 }
 
-// LWJGL Version and Native Library Configuration
-import org.gradle.internal.os.OperatingSystem
-
-project.ext.lwjglVersion = "3.3.6"
-project.ext.jomlVersion = "1.10.7"
-
-switch (OperatingSystem.current()) {
-    case OperatingSystem.FREE_BSD:
-        project.ext.lwjglNatives = "natives-freebsd"
-        break
-    case OperatingSystem.LINUX:
-        project.ext.lwjglNatives = "natives-linux"
-        def osArch = System.getProperty("os.arch")
-        if (osArch.startsWith("arm") || osArch.startsWith("aarch64")) {
-            project.ext.lwjglNatives += osArch.contains("64") || osArch.startsWith("armv8") ? "-arm64" : "-arm32"
-        } else if (osArch.startsWith("ppc")) {
-            project.ext.lwjglNatives += "-ppc64le"
-        } else if (osArch.startsWith("riscv")) {
-            project.ext.lwjglNatives += "-riscv64"
-        }
-        break
-    case OperatingSystem.MAC_OS:
-        project.ext.lwjglNatives = System.getProperty("os.arch").startsWith("aarch64") ? "natives-macos-arm64" : "natives-macos"
-        break
-    case OperatingSystem.WINDOWS:
-        def osArch = System.getProperty("os.arch")
-        project.ext.lwjglNatives = osArch.contains("64")
-            ? "natives-windows${osArch.startsWith("aarch64") ? "-arm64" : ""}"
-            : "natives-windows-x86"
-        break
-}
-
-println("lwjglNatives: ${lwjglNatives}")
-
-// Dependencies
 dependencies {
-    // LWJGL BOM and Modules
-    implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
-    def lwjglModules = [
-        "lwjgl", "lwjgl-assimp", "lwjgl-bgfx", "lwjgl-freetype", "lwjgl-glfw",
-        "lwjgl-harfbuzz", "lwjgl-jemalloc", "lwjgl-ktx", "lwjgl-libdivide", "lwjgl-llvm",
-        "lwjgl-lmdb", "lwjgl-lz4", "lwjgl-meow", "lwjgl-meshoptimizer", "lwjgl-msdfgen",
-        "lwjgl-nanovg", "lwjgl-nfd", "lwjgl-nuklear", "lwjgl-openal", "lwjgl-opengl",
-        "lwjgl-opengles", "lwjgl-openvr", "lwjgl-openxr", "lwjgl-opus", "lwjgl-par",
-        "lwjgl-remotery", "lwjgl-rpmalloc", "lwjgl-shaderc", "lwjgl-spvc", "lwjgl-stb",
-        "lwjgl-tinyexr", "lwjgl-tinyfd", "lwjgl-vma", "lwjgl-xxhash", "lwjgl-yoga",
-        "lwjgl-zstd"
-    ]
-    lwjglModules.each { module ->
-        implementation "org.lwjgl:${module}"
-        runtimeOnly "org.lwjgl:${module}::${lwjglNatives}"
-    }
 
-    // Additional Dependencies
-    implementation "org.joml:joml:${jomlVersion}"
-    implementation 'com.google.code.gson:gson:2.12.1'
-    implementation 'org.json:json:20250107'
+    // Test dependencies
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
 }
 
-// Java Compatibility
+application {
+    mainClass = 'com.novacraft.App' // Fully qualified name of your main class
+}
+
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
-
-// JAR Packaging
-jar {
-    manifest {
-        attributes 'Main-Class': 'com.novaforgestudios.novacraft.core.Main'
-    }
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}
-
-// Source Sets
-sourceSets {
-    main {
-        java {
-            srcDirs = ['src/main/java']
-        }
-        resources {
-            srcDirs = ['src/main/assets']
-        }
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17) // Match your target Java version
     }
 }
