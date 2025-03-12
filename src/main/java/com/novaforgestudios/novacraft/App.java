@@ -4,7 +4,7 @@ import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
-// Import OpenGL constants and functions
+// Static import for OpenGL constants and functions
 import static org.lwjgl.opengl.GL11.*;
 
 public class App {
