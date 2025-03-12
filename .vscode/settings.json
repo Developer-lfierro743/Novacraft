@@ -33,6 +33,7 @@
         "tinyexr",
         "tinyfd",
         "xxhash",
-        "zstd"
+        "zstd",
+        "cuda"
     ]
 }
