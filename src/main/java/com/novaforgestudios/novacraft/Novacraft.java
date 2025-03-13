@@ -7,7 +7,9 @@ import org.lwjgl.opengl.GL;
 // Static import for OpenGL constants and functions
 import static org.lwjgl.opengl.GL11.*;
 
-public class Novacraft {
+public class Novacraft implements runnnable {
+    // make the game full screen
+    private static final boolean FULLSCREEN_MODE;
 
     // The width and height of the game window
     private static final int WINDOW_WIDTH = 800;
