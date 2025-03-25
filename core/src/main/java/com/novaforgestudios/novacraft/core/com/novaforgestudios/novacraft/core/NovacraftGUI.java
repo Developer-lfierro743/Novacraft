@@ -1,7 +1,5 @@
 package com.novaforgestudios.novacraft.core;
 
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
