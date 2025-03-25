@@ -1,3 +1,5 @@
+package com.novaforgestudios.novacraft.core;
+
 
 
 import javax.swing.*;
