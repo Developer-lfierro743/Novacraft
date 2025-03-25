@@ -1,5 +1,0 @@
-rootProject.name = 'Novacraft'
-
-include 'core'
-include 'world'
-include 'rendering'
