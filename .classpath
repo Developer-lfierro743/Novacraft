@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="resources"/>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/joml-1.10.7.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/joml-primitives-1.10.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl3-awt-0.1.8.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-assimp.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-bgfx.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-egl.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-fmod.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-freetype.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-glfw.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-harfbuzz.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-hwloc.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-jawt.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-jemalloc.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-ktx.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-libdivide.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-llvm.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-lmdb.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-lz4.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-meow.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-meshoptimizer.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-msdfgen.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-nanovg.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-nfd.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-nuklear.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-odbc.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-openal.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-opencl.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-opengl.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-opengles.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-opus.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-par.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-remotery.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-rpmalloc.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-shaderc.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-spvc.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-stb.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-tinyfd.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-vma.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-vulkan.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjglx-debug-1.0.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-xxhash.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-yoga.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/lwjgl-zstd.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/steamworks4j-1.9.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/steamworks4j-server-1.9.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/lfier/Desktop/Dev tools/LWJGL 3/Natives/x64 Windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
